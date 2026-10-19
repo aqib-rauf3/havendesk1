@@ -1,0 +1,67 @@
+{
+  "id": "hvac",
+  "businessName": "Apex Climate & Heating Pros",
+  "tagline": "24/7 Emergency AC & Heating Repair — Fast Metro Dispatch",
+  "phone": "+1 (800) 555-HVAC",
+  "whatsapp": "+1 (800) 555-4822",
+  "website": "https://apexclimate.example.com",
+  "timezone": "America/New_York",
+  "businessHours": {
+    "monday_sunday": "24 Hours / 7 Days Emergency Service Available"
+  },
+  "emergencyKeywords": [
+    "no heat", "freezing", "cold", "ac out", "burning", "gas", "smell", 
+    "carbon monoxide", "infant", "elderly", "furnace", "heat wave", "emergency"
+  ],
+  "triageRules": {
+    "HIGH_EMERGENCY": {
+      "condition": "Sub-freezing temperatures with no heat, gas/burning smell, or vulnerable persons during heat wave",
+      "action": "Immediate dispatch alert to on-call HVAC technician, advise emergency shutoff if gas suspected, expedite same-day dispatch."
+    },
+    "STANDARD_SERVICE": {
+      "condition": "Seasonal tune-up, minor airflow issue, thermostat upgrade, duct cleaning",
+      "action": "Book 60-minute diagnostic service window on technician dispatch schedule."
+    }
+  },
+  "services": [
+    {
+      "name": "Emergency No-Heat / AC Breakdown Diagnostic & Repair",
+      "durationMinutes": 60,
+      "priceRange": "$89 Diagnostic Fee (Waived with repair)",
+      "isEmergency": true
+    },
+    {
+      "name": "Complete System Precision Tune-Up & Safety Inspection",
+      "durationMinutes": 60,
+      "priceRange": "$69 Seasonal Special",
+      "isEmergency": false
+    },
+    {
+      "name": "High-Efficiency Heat Pump / AC Replacement Estimate",
+      "durationMinutes": 45,
+      "priceRange": "Free In-Home Assessment & Energy Rebate Audit",
+      "isEmergency": false
+    }
+  ],
+  "qualificationQuestions": [
+    "Is your heating or cooling system completely unresponsive?",
+    "What is your property street address?",
+    "Are there any burning odors or unusual noises coming from the unit?",
+    "Is anyone in the household under 2 years old or elderly?"
+  ],
+  "faq": [
+    {
+      "q": "What should I do if I smell natural gas or burning?",
+      "a": "Leave the house immediately, do not turn on any light switches, and call 911 or your gas utility from outside. We can inspect the equipment once cleared."
+    },
+    {
+      "q": "How fast can a tech arrive?",
+      "a": "For emergency no-heat calls in freezing weather, average dispatch response is under 90 minutes."
+    }
+  ],
+  "receptionistPersona": {
+    "name": "Marcus",
+    "tone": "Calm, safety-first, decisive, helpful",
+    "greeting": "Thanks for calling Apex Climate & Heating! How can we assist you today?"
+  }
+}

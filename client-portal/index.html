@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HavenDesk — 24/7 AI Receptionist Portal</title>
+  <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
+  <link rel="apple-touch-icon" href="/shared/icon.svg">
+  <link rel="manifest" href="/app/manifest.json">
+  <meta name="theme-color" content="#0d9488">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="HavenDesk">
+  <link rel="stylesheet" href="/shared/design-system.css?v=2.0.2">
+  <link rel="stylesheet" href="/app/portal.css?v=2.0.2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Impersonation Warning Banner (Shown only when Super Admin is viewing as Client) -->
+  <div id="impersonationBanner" class="impersonation-banner" style="display: none;">
+    <div>
+      <span>⚠️ <strong>ADMIN IMPERSONATION MODE</strong>: Currently viewing portal as <span id="impersonatedTenantName">Client</span>.</span>
+    </div>
+    <button id="btnExitImpersonation" class="btn btn-sm btn-secondary">Exit to Admin Console &rarr;</button>
+  </div>
+
+  <!-- Subscription Status Banner (Shown when trial expiring, past due, or suspended) -->
+  <div id="subscriptionBanner" class="subscription-banner" style="display: none;">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span id="subBannerIcon">ℹ️</span>
+      <span id="subBannerText">Your subscription is currently suspended or past due. Settings edits are paused, but past calls and bookings remain available.</span>
+    </div>
+    <a href="#/billing" class="btn btn-sm btn-primary" id="subBannerBtn">Update Payment Method &rarr;</a>
+  </div>
+
+  <!-- Unauthenticated Auth Container (Login / Signup / Forgot Password) -->
+  <div id="authContainer" class="auth-wrapper" style="display: none;">
+    <!-- Injected dynamically by portal.js -->
+  </div>
+
+  <!-- First-time Onboarding Wizard Container -->
+  <div id="onboardingContainer" class="content-body" style="display: none;">
+    <!-- Injected dynamically by portal.js -->
+  </div>
+
+  <!-- Main Authenticated App Layout -->
+  <div id="appLayout" class="app-layout" style="display: none;">
+    
+    <!-- Left Navigation Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="#/overview" class="sidebar-brand">
+          <svg width="24" height="24" viewBox="0 0 48 48" fill="none">
+            <rect width="48" height="48" rx="12" fill="#0d9488" fill-opacity="0.14" stroke="#0d9488" stroke-width="2"/>
+            <path d="M14 31 C14 20, 34 20, 34 31" stroke="#0d9488" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="24" cy="16" r="3.5" fill="#0d9488"/>
+          </svg>
+          <span>Haven<span style="font-weight:400; color:var(--accent)">Desk</span></span>
+        </a>
+        <button id="themeToggleBtn" class="btn btn-icon btn-secondary" title="Toggle Light / Dark Mode">
+          <svg class="nav-item-icon" width="16" height="16"><use href="#icon-moon"/></svg>
+        </button>
+      </div>
+
+      <!-- Tenant Business Header Badge -->
+      <div style="padding: 12px 16px 8px; border-bottom: 1px solid var(--border-subtle);">
+        <div id="sidebarTenantName" style="font-size: 13.5px; font-weight: 700; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+          Vanguard Roofing
+        </div>
+        <div id="sidebarTenantPlan" style="font-size: 11.5px; color: var(--accent); font-weight: 600;">
+          Growth Plan (Active)
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Core Operations</div>
+        <a href="#/overview" class="nav-item active" data-nav="overview">
+          <svg class="nav-item-icon"><use href="#icon-layout"/></svg>
+          <span>Overview</span>
+        </a>
+        <a href="#/calls" class="nav-item" data-nav="calls">
+          <svg class="nav-item-icon"><use href="#icon-phone"/></svg>
+          <span>Calls</span>
+          <span id="badgeCallCount" class="badge badge-accent" style="margin-left: auto;">0</span>
+        </a>
+        <a href="#/messages" class="nav-item" data-nav="messages">
+          <svg class="nav-item-icon"><use href="#icon-message"/></svg>
+          <span>Messages & WhatsApp</span>
+        </a>
+        <a href="#/leads" class="nav-item" data-nav="leads">
+          <svg class="nav-item-icon"><use href="#icon-users"/></svg>
+          <span>Leads & CRM</span>
+        </a>
+        <a href="#/calendar" class="nav-item" data-nav="calendar">
+          <svg class="nav-item-icon"><use href="#icon-calendar"/></svg>
+          <span>Calendar Bookings</span>
+        </a>
+
+        <div class="nav-section-title">Receptionist Configuration</div>
+        <a href="#/settings" class="nav-item" data-nav="settings">
+          <svg class="nav-item-icon"><use href="#icon-sliders"/></svg>
+          <span>Receptionist Rules</span>
+        </a>
+        <a href="#/automations" class="nav-item" data-nav="automations">
+          <svg class="nav-item-icon"><use href="#icon-zap"/></svg>
+          <span>Automations</span>
+        </a>
+        <a href="#/integrations" class="nav-item" data-nav="integrations">
+          <svg class="nav-item-icon"><use href="#icon-link"/></svg>
+          <span>Channels & Widget</span>
+        </a>
+
+        <div class="nav-section-title">Organization</div>
+        <a href="#/reports" class="nav-item" data-nav="reports">
+          <svg class="nav-item-icon"><use href="#icon-bar-chart"/></svg>
+          <span>Reports & Analytics</span>
+        </a>
+        <a href="#/billing" class="nav-item" data-nav="billing">
+          <svg class="nav-item-icon"><use href="#icon-credit-card"/></svg>
+          <span>Billing & Usage</span>
+        </a>
+        <a href="#/team" class="nav-item" data-nav="team">
+          <svg class="nav-item-icon"><use href="#icon-shield"/></svg>
+          <span>Team & Staff</span>
+        </a>
+      </nav>
+
+      <!-- Sidebar Footer User Profile -->
+      <div class="sidebar-footer">
+        <div class="user-profile-badge">
+          <div id="userAvatar" class="avatar-initials">RV</div>
+          <div style="display: flex; flex-direction: column;">
+            <span id="userName" style="font-size: 13px; font-weight: 600;">Robert Vanguard</span>
+            <span id="userRole" style="font-size: 11px; color: var(--text-muted);">Owner</span>
+          </div>
+        </div>
+        <button id="btnLogout" class="btn btn-icon btn-secondary" title="Sign Out">
+          <svg class="nav-item-icon" width="16" height="16"><use href="#icon-log-out"/></svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      
+      <!-- Top Header Bar -->
+      <header class="top-header">
+        <div>
+          <h2 id="topBarTitle" style="font-size: 15px; font-weight: 700; color: var(--text-primary);">Dashboard Overview</h2>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <!-- 24/7 Engine Status Indicator -->
+          <div class="badge badge-success" style="padding: 4px 10px; font-size: 12px;">
+            <span style="width: 6px; height: 6px; border-radius: 50%; background-color: var(--success); display: inline-block;"></span>
+            24/7 AI Receptionist Active
+          </div>
+
+          <!-- Quick Test Live Call Button -->
+          <a href="#/settings" class="btn btn-sm btn-primary">
+            📞 Test Live Call
+          </a>
+        </div>
+      </header>
+
+      <!-- Dynamic Page Content -->
+      <main id="pageContent" class="content-body">
+        <!-- Rendered dynamically by portal.js based on route -->
+      </main>
+    </div>
+  </div>
+
+  <!-- Shared Modal Container -->
+  <div id="modalContainer" style="display: none;"></div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Load SVG Icons Sprite -->
+  <div id="iconsPlaceholder" style="display: none;"></div>
+
+  <script src="/app/portal.js?v=2.0.2"></script>
+  <script>
+    if ('caches' in window) {
+      caches.keys().then(keys => {
+        keys.forEach(k => {
+          if (k === 'havendesk-portal-v1') {
+            caches.delete(k);
+          }
+        });
+      });
+    }
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/app/sw.js?v=2.0.2').then(reg => {
+          reg.update();
+        }).catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>

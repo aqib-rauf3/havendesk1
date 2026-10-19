@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  havendesk:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: havendesk-saas
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    env_file:
+      - .env
+    volumes:
+      # Persistent host directory for SQLite database file
+      - ./data:/app/server/db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3

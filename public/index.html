@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OmniReceptionist AI — Multi-Channel Enterprise Reception Engine</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header Bar -->
+  <header class="top-nav">
+    <div class="logo-area">
+      <div class="logo-badge">🤖</div>
+      <div>
+        <h1 class="logo-title">OmniReceptionist <span class="badge-pro">ENTERPRISE</span></h1>
+        <p class="logo-sub">Autonomous Multi-Channel AI Receptionist & Triage Engine</p>
+      </div>
+    </div>
+
+    <!-- Active Niche Switcher -->
+    <div class="niche-selector-wrapper">
+      <span class="label-tiny">ACTIVE BUSINESS NICHE:</span>
+      <select id="nicheSelect" class="niche-select">
+        <option value="roofing" selected>🏠 Vanguard Roofing & Restoration</option>
+        <option value="dental">🦷 Apex Family & Emergency Dentistry</option>
+        <option value="hvac">⚡ Apex Climate & Heating Pros</option>
+      </select>
+    </div>
+
+    <div class="header-actions">
+      <button id="btnAutoDemo" class="btn btn-gradient pulse-glow">
+        <span>▶</span> Run Live Client Demo
+      </button>
+      <div class="live-status">
+        <span class="status-dot"></span> 24/7 Engine Active
+      </div>
+    </div>
+  </header>
+
+  <!-- Banner / Quick Stats -->
+  <div class="stats-ribbon">
+    <div class="stat-item">
+      <span class="stat-label">Main Phone Line (Voice AI)</span>
+      <span class="stat-val text-green" id="statVoice">Retell / Vapi Ready (Sub-800ms)</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">WhatsApp Channel</span>
+      <span class="stat-val text-green" id="statWa">Meta & Twilio Webhook Live</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Website Widget</span>
+      <span class="stat-val text-green">Embeddable Live Chat</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Calendar Sync</span>
+      <span class="stat-val text-blue">Auto-Conflict Avoidance</span>
+    </div>
+  </div>
+
+  <!-- Main Multi-Channel Testing Grid -->
+  <main class="dashboard-grid">
+    
+    <!-- PANEL 1: Phone Line Simulator -->
+    <section class="card channel-card">
+      <div class="card-header">
+        <div class="header-left">
+          <span class="channel-icon">📞</span>
+          <div>
+            <h3>Main Phone Line</h3>
+            <span class="sub-channel">Sub-second Voice AI & Triage</span>
+          </div>
+        </div>
+        <span class="badge badge-voice" id="callStatusBadge">Standby</span>
+      </div>
+
+      <div class="phone-container">
+        <!-- Caller Profile Header -->
+        <div class="phone-screen-header">
+          <div class="caller-avatar" id="phoneAvatar">👤</div>
+          <div class="caller-info">
+            <h4 id="phoneCallerName">John Doe (Homeowner)</h4>
+            <p id="phoneCallerNumber">+1 (555) 234-5678</p>
+          </div>
+          <div class="audio-wave" id="audioWave">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <!-- Phone Transcript Window -->
+        <div class="transcript-box" id="voiceTranscript">
+          <div class="message system-msg">
+            Call connected to 24/7 AI Receptionist (<span id="voicePersonaName">Sarah</span>).
+          </div>
+        </div>
+
+        <!-- Simulated Speech Presets & Input -->
+        <div class="speech-controls">
+          <div class="preset-label">Quick Voice Prompts (Click to Speak):</div>
+          <div class="preset-chips" id="voicePresets">
+            <!-- Dynamic chips populated based on niche -->
+          </div>
+
+          <div class="input-row">
+            <input type="text" id="voiceCustomInput" placeholder="Type or click preset to simulate caller speech...">
+            <button id="btnVoiceSend" class="btn btn-primary">Speak</button>
+          </div>
+          
+          <div class="tts-toggle">
+            <label>
+              <input type="checkbox" id="chkAudioVoice" checked> Read AI responses aloud (Browser Audio Voice)
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANEL 2: WhatsApp Smartphone Simulator -->
+    <section class="card channel-card">
+      <div class="card-header">
+        <div class="header-left">
+          <span class="channel-icon">💬</span>
+          <div>
+            <h3>WhatsApp Communication</h3>
+            <span class="sub-channel">Photo Intake & Auto-Confirmations</span>
+          </div>
+        </div>
+        <span class="badge badge-whatsapp">Official Business API</span>
+      </div>
+
+      <div class="smartphone-frame">
+        <div class="phone-notch"></div>
+        <div class="wa-chat-header">
+          <div class="wa-avatar">🤖</div>
+          <div class="wa-header-info">
+            <span class="wa-name" id="waBusinessName">Vanguard Roofing Verified</span>
+            <span class="wa-status">online (24/7 AI Receptionist)</span>
+          </div>
+        </div>
+
+        <!-- WhatsApp Chat Messages -->
+        <div class="wa-chat-body" id="waChatBody">
+          <div class="wa-bubble wa-incoming">
+            Hi! Thanks for contacting us on WhatsApp. How can we help you today?
+            <span class="wa-time">Just now</span>
+          </div>
+        </div>
+
+        <!-- WhatsApp Action Bar -->
+        <div class="wa-action-bar">
+          <button id="btnSendPhoto" class="btn-wa-attach" title="Send Photo Attachment">
+            📷 <span>Send Photo</span>
+          </button>
+          <input type="text" id="waInput" placeholder="Type a message...">
+          <button id="btnWaSend" class="btn-wa-send">➤</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANEL 3: Unified CRM, Calendar & Scheduled Automations -->
+    <section class="card channel-card crm-card">
+      <div class="card-header">
+        <div class="header-left">
+          <span class="channel-icon">📊</span>
+          <div>
+            <h3>Unified CRM & Operations</h3>
+            <span class="sub-channel">Cross-Channel Memory & Calendar</span>
+          </div>
+        </div>
+        <div class="crm-tools">
+          <button id="btnMorningBriefing" class="btn btn-outline-sm">☀️ 8 AM Briefing</button>
+          <button id="btnTriggerReminder" class="btn btn-outline-sm">🔔 24h Reminder</button>
+        </div>
+      </div>
+
+      <!-- Triage & Active Leads Table -->
+      <div class="crm-section">
+        <div class="section-title">
+          <h4>Captured Leads & Triage Queue</h4>
+          <span class="lead-count" id="leadCount">0 Leads</span>
+        </div>
+        <div class="table-wrapper">
+          <table class="crm-table">
+            <thead>
+              <tr>
+                <th>Caller</th>
+                <th>Phone / Channel</th>
+                <th>Triage Status</th>
+                <th>Details / Media</th>
+              </tr>
+            </thead>
+            <tbody id="leadsTableBody">
+              <tr><td colspan="4" class="empty-cell">No calls recorded yet. Click a voice prompt or WhatsApp above!</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Booked Appointments Table -->
+      <div class="crm-section">
+        <div class="section-title">
+          <h4>Confirmed Calendar Bookings</h4>
+          <span class="lead-count" id="aptCount">0 Bookings</span>
+        </div>
+        <div class="table-wrapper">
+          <table class="crm-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Client</th>
+                <th>Service Booked</th>
+                <th>Scheduled Slot</th>
+              </tr>
+            </thead>
+            <tbody id="appointmentsTableBody">
+              <tr><td colspan="4" class="empty-cell">No appointments booked yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Real-Time Activity Feed -->
+      <div class="crm-section">
+        <div class="section-title">
+          <h4>Live Orchestrator Event Feed</h4>
+        </div>
+        <div class="activity-feed" id="activityFeed">
+          <div class="feed-item">
+            <span class="feed-badge feed-sys">SYSTEM</span>
+            <span class="feed-text">Engine ready for Voice, WhatsApp, and Website channels.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Interactive Client Demo Modal -->
+  <div id="demoModal" class="modal-overlay hidden">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-icon">🎬</span>
+          <div>
+            <h3>Live Client Demonstration Scenario</h3>
+            <p id="demoSubtitle">Showing real-time crisis resolution: Storm Roof Leak Triage & Booking</p>
+          </div>
+        </div>
+        <button id="btnCloseDemo" class="btn-close">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="demo-progress-bar">
+          <div id="demoProgressFill" class="demo-progress-fill"></div>
+        </div>
+        <div class="demo-step-indicator" id="demoStepIndicator">
+          Step 1: Emergency Call Inbound (00:04)
+        </div>
+
+        <div class="demo-stage-screen" id="demoStageScreen">
+          <!-- Live stage contents rendered here -->
+        </div>
+
+        <div class="demo-takeaway-card">
+          <span class="badge-problem">PROBLEM SOLVED:</span>
+          <span id="demoTakeawayText">
+            Homeowner would have called competitor in 60s. AI answers immediately, triages leak, captures photos on WhatsApp, and confirms calendar dispatch automatically.
+          </span>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="btnPauseDemo" class="btn btn-secondary">Pause</button>
+        <button id="btnNextDemoStep" class="btn btn-primary">Next Step &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Embedded Web Widget Floating Bubble -->
+  <div class="web-widget-bubble" id="webWidgetBubble" title="Chat with Website Receptionist">
+    <span>💬</span>
+    <span class="widget-badge-online">1</span>
+  </div>
+
+  <div class="web-widget-box hidden" id="webWidgetBox">
+    <div class="web-widget-header">
+      <div>
+        <strong id="widgetTitle">Receptionist Live Chat</strong>
+        <p id="widgetSub">Typically replies in seconds</p>
+      </div>
+      <button id="btnCloseWidget">&times;</button>
+    </div>
+    <div class="web-widget-messages" id="widgetMessages">
+      <div class="w-msg w-bot">Hello! How can we assist you with our services today?</div>
+    </div>
+    <div class="web-widget-footer">
+      <input type="text" id="widgetInput" placeholder="Ask a question...">
+      <button id="btnWidgetSend">➤</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

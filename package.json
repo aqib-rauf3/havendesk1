@@ -1,0 +1,33 @@
+{
+  "name": "havendesk",
+  "version": "2.0.0",
+  "description": "HavenDesk — Autonomous Multi-Channel AI Receptionist & Triage Platform (SaaS)",
+  "main": "server/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node --watch server/server.js",
+    "seed": "node server/db/seed.js",
+    "test": "node tests/tenant-isolation.test.js && node tests/auth.test.js && node tests/billing-enforcement.test.js && node tests/engine-webhooks.test.js && node tests/views-verification.js && node tests/portal-enhancements.test.js && node tests/full-portal-reverification.test.js",
+    "generate-demo": "node demo-video/make_video.js"
+  },
+  "keywords": [
+    "havendesk",
+    "ai-receptionist",
+    "voice-ai",
+    "whatsapp-bot",
+    "saas",
+    "multi-tenant",
+    "emergency-triage",
+    "dental",
+    "roofing"
+  ],
+  "author": "HavenDesk Inc.",
+  "license": "Commercial",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "ws": "^8.18.0"
+  }
+}

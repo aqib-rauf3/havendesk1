@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NicheProfileSchema",
+  "description": "Configuration schema for any local business niche running on the Modular AI Receptionist engine.",
+  "type": "object",
+  "required": ["id", "businessName", "phone", "emergencyKeywords", "triageRules", "services", "receptionistPersona"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for this niche (e.g. 'roofing', 'dental', 'plumbing')"
+    },
+    "businessName": {
+      "type": "string",
+      "description": "Company name used in caller greetings and confirmations"
+    },
+    "phone": { "type": "string" },
+    "whatsapp": { "type": "string" },
+    "website": { "type": "string" },
+    "emergencyKeywords": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Keywords that trigger high-priority emergency triage"
+    },
+    "triageRules": {
+      "type": "object",
+      "description": "Defines HIGH_EMERGENCY and standard routing logic"
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "durationMinutes", "isEmergency"],
+        "properties": {
+          "name": { "type": "string" },
+          "durationMinutes": { "type": "number" },
+          "priceRange": { "type": "string" },
+          "isEmergency": { "type": "boolean" }
+        }
+      }
+    },
+    "qualificationQuestions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "faq": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["q", "a"],
+        "properties": {
+          "q": { "type": "string" },
+          "a": { "type": "string" }
+        }
+      }
+    },
+    "receptionistPersona": {
+      "type": "object",
+      "required": ["name", "tone", "greeting"],
+      "properties": {
+        "name": { "type": "string" },
+        "tone": { "type": "string" },
+        "greeting": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "id": "roofing",
+  "businessName": "Vanguard Roofing & Storm Restoration",
+  "tagline": "24/7 Emergency Storm Leak & Full Replacement Specialists",
+  "phone": "+1 (800) 555-ROOF",
+  "whatsapp": "+1 (800) 555-7663",
+  "website": "https://vanguardroofing.example.com",
+  "timezone": "America/New_York",
+  "businessHours": {
+    "monday_friday": "7:00 AM - 6:00 PM",
+    "saturday": "8:00 AM - 3:00 PM",
+    "sunday": "Emergency Tarp & Storm Dispatch Only"
+  },
+  "emergencyKeywords": [
+    "leak", "leaking", "pouring", "water", "ceiling", "storm", "rain", 
+    "tree on roof", "flooding", "emergency", "holes", "drips", "dripping"
+  ],
+  "triageRules": {
+    "HIGH_EMERGENCY": {
+      "condition": "Active water intrusion inside living quarters, tree on roof, or collapsed drywall",
+      "action": "Immediate dispatch alert to on-call project manager, offer live transfer, and send urgent WhatsApp link to upload photo for immediate crew routing."
+    },
+    "STANDARD_INSPECTION": {
+      "condition": "Missing shingles, age inspection, minor wear, routine quote, insurance claim review",
+      "action": "Book 15-minute on-site assessment slot on calendar, capture address, request photo via WhatsApp."
+    }
+  },
+  "services": [
+    {
+      "name": "Emergency Tarp & Leak Mitigation",
+      "durationMinutes": 60,
+      "priceRange": "$450 - $950 (Credited toward repair/replacement)",
+      "isEmergency": true
+    },
+    {
+      "name": "Comprehensive 21-Point Drone & Roof Inspection",
+      "durationMinutes": 45,
+      "priceRange": "Free / $0 for Homeowners",
+      "isEmergency": false
+    },
+    {
+      "name": "Full Architectural Shingle / Metal Roof Replacement",
+      "durationMinutes": 60,
+      "priceRange": "$7,500 - $24,000 (Insurance claim assistance available)",
+      "isEmergency": false
+    },
+    {
+      "name": "Gutter & Flashing Repair",
+      "durationMinutes": 45,
+      "priceRange": "$350 - $1,200",
+      "isEmergency": false
+    }
+  ],
+  "qualificationQuestions": [
+    "Are you the homeowner or property manager?",
+    "What is the street address of the property?",
+    "Is there water actively leaking into the home right now?",
+    "Approximately how old is the current roof, and have you filed an insurance claim?"
+  ],
+  "faq": [
+    {
+      "q": "Do you work with home insurance companies?",
+      "a": "Yes! We work directly with State Farm, Allstate, Travelers, Liberty Mutual, and all major carriers to handle your storm/hail claim."
+    },
+    {
+      "q": "How quickly can someone arrive for an active emergency leak?",
+      "a": "Our emergency tarping crew can typically be on-site within 60 to 90 minutes across our metro service area."
+    },
+    {
+      "q": "Are your roofers licensed and insured?",
+      "a": "We carry $2M commercial general liability insurance and are GAF Master Elite certified with full manufacturer warranties."
+    }
+  ],
+  "receptionistPersona": {
+    "name": "Sarah",
+    "tone": "Empathetic, reassuring, highly competent, urgent when emergency is detected",
+    "greeting": "Thanks for calling Vanguard Roofing! How can our 24/7 team assist you today?"
+  }
+}

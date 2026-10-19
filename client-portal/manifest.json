@@ -1,0 +1,24 @@
+{
+  "name": "HavenDesk — 24/7 AI Receptionist",
+  "short_name": "HavenDesk",
+  "description": "24/7 AI phone, WhatsApp, and website receptionist for local service businesses.",
+  "start_url": "/app",
+  "scope": "/app",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0d9488",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/shared/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/shared/favicon.svg",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/svg+xml"
+    }
+  ]
+}

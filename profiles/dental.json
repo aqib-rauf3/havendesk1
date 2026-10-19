@@ -1,0 +1,79 @@
+{
+  "id": "dental",
+  "businessName": "Apex Family & Emergency Dentistry",
+  "tagline": "Gentle, State-of-the-Art Dental Care & Same-Day Emergency Relief",
+  "phone": "+1 (800) 555-TOOTH",
+  "whatsapp": "+1 (800) 555-8668",
+  "website": "https://apexdental.example.com",
+  "timezone": "America/New_York",
+  "businessHours": {
+    "monday_thursday": "8:00 AM - 5:30 PM",
+    "friday": "8:00 AM - 2:00 PM",
+    "saturday_sunday": "Closed (24/7 Emergency Triage & On-Call Doctor Line)"
+  },
+  "emergencyKeywords": [
+    "severe pain", "pain", "throbbing", "swollen", "swelling", "knocked out", 
+    "bleeding", "broken tooth", "abscess", "fever", "emergency", "lost filling", "hurt", "hurts", "toothache"
+  ],
+  "triageRules": {
+    "HIGH_EMERGENCY": {
+      "condition": "Severe throbbing dental pain, facial swelling, trauma/knocked-out tooth, or uncontrollable bleeding",
+      "action": "Prioritize same-day emergency relief chair slot, notify on-call dentist Dr. Davis immediately, advise cold compress / preserving tooth in milk."
+    },
+    "STANDARD_CARE": {
+      "condition": "Routine hygiene cleaning, routine checkup, teeth whitening, Invisalign consultation, crown check",
+      "action": "Book next available 45-minute dental chair appointment, collect insurance provider info, send WhatsApp appointment card."
+    }
+  },
+  "services": [
+    {
+      "name": "Same-Day Emergency Pain Relief & Exam",
+      "durationMinutes": 30,
+      "priceRange": "$99 New Patient Emergency Exam & X-Ray",
+      "isEmergency": true
+    },
+    {
+      "name": "Comprehensive Exam, Digital X-Rays & Dental Cleaning",
+      "durationMinutes": 60,
+      "priceRange": "$149 Special or 100% Covered by Most PPO Plans",
+      "isEmergency": false
+    },
+    {
+      "name": "Invisalign & Clear Aligner Consultation",
+      "durationMinutes": 30,
+      "priceRange": "Free Consultation ($3,500 - $5,500 treatment)",
+      "isEmergency": false
+    },
+    {
+      "name": "Dental Implants & Restorative Consultation",
+      "durationMinutes": 45,
+      "priceRange": "Free Consultation with 3D CBCT Scan",
+      "isEmergency": false
+    }
+  ],
+  "qualificationQuestions": [
+    "Are you experiencing any pain, swelling, or tooth sensitivity?",
+    "Are you an existing patient or will this be your first visit with us?",
+    "Do you have dental insurance like Delta Dental, MetLife, Cigna, or Guardian?",
+    "What day of the week and time works best for your schedule?"
+  ],
+  "faq": [
+    {
+      "q": "What dental insurances do you accept?",
+      "a": "We are in-network with Delta Dental Premier, MetLife, Cigna, Guardian, Aetna, and Humana. We also offer affordable in-house membership plans."
+    },
+    {
+      "q": "What should I do if a tooth was completely knocked out?",
+      "a": "Pick it up by the crown (do not touch the root), gently rinse with water, place it in a cup of cold milk or saliva, and come to our office immediately. Time is critical within 60 minutes."
+    },
+    {
+      "q": "Do you offer sedation options for anxious patients?",
+      "a": "Yes! We offer nitrous oxide (laughing gas) and oral conscious sedation to ensure a completely painless, anxiety-free visit."
+    }
+  ],
+  "receptionistPersona": {
+    "name": "Emily",
+    "tone": "Warm, gentle, caring, highly attentive to pain levels and patient comfort",
+    "greeting": "Thanks for calling Apex Dental! How can our team help you today?"
+  }
+}
