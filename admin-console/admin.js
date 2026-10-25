@@ -22,10 +22,16 @@ fetch('/shared/icons.svg')
 
 window.addEventListener('hashchange', handleAdminRoute);
 
-document.addEventListener('DOMContentLoaded', async () => {
+async function initAdminApp() {
   setupAdminEvents();
   await checkAdminAuthAndRoute();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAdminApp);
+} else {
+  initAdminApp();
+}
 
 function setupAdminEvents() {
   const themeBtn = document.getElementById('adminThemeToggleBtn');
@@ -114,6 +120,7 @@ function handleAdminLogout() {
   localStorage.removeItem('haven_admin_token');
   showAdminAuth();
 }
+window.handleAdminLogout = handleAdminLogout;
 
 async function executeAdminLogin(email, password, totpCode) {
   try {
@@ -139,6 +146,18 @@ async function executeAdminLogin(email, password, totpCode) {
     showAdminToast(err.message, 'danger');
   }
 }
+window.executeAdminLogin = executeAdminLogin;
+
+window.quickAdminLogin = async function() {
+  const emailInput = document.getElementById('adminEmail');
+  const passwordInput = document.getElementById('adminPassword');
+  const totpInput = document.getElementById('adminTotp');
+  if (emailInput) emailInput.value = 'admin@havendesk.com';
+  if (passwordInput) passwordInput.value = 'HavenAdmin2026!';
+  if (totpInput) totpInput.value = '123456';
+  showAdminToast('Authenticating as Master Administrator...', 'info');
+  await executeAdminLogin('admin@havendesk.com', 'HavenAdmin2026!', '123456');
+};
 
 function handleAdminRoute() {
   const hash = window.location.hash.replace(/^#\/?/, '') || 'overview';
@@ -1018,6 +1037,7 @@ window.toggleMaintenance = async function(enable) {
 };
 
 function showAdminToast(message, type = 'info') {
+  window.showAdminToast = showAdminToast;
   const container = document.getElementById('adminToastContainer');
   const toast = document.createElement('div');
   toast.className = 'toast';

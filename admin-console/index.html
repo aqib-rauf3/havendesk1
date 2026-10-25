@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HavenDesk — Management Console</title>
   <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg">
-  <link rel="stylesheet" href="/shared/design-system.css">
-  <link rel="stylesheet" href="/admin/admin.css">
+  <link rel="stylesheet" href="/shared/design-system.css?v=2.0.2">
+  <link rel="stylesheet" href="/admin/admin.css?v=2.0.2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -42,6 +42,11 @@
         </div>
         <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;">Authenticate & Enter &rarr;</button>
       </form>
+      <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border-subtle); text-align: center;">
+        <button type="button" class="btn btn-secondary btn-sm" style="width: 100%; font-size: 12.5px; border-color: var(--accent); color: var(--accent); font-weight: 600;" onclick="quickAdminLogin()">
+          ⚡ One-Click Demo Login (Super Admin)
+        </button>
+      </div>
     </div>
   </div>
 
@@ -170,6 +175,6 @@
   <div id="adminToastContainer" class="toast-container"></div>
   <div id="adminIconsPlaceholder" style="display: none;"></div>
 
-  <script src="/admin/admin.js"></script>
+  <script src="/admin/admin.js?v=2.0.2"></script>
 </body>
 </html>
