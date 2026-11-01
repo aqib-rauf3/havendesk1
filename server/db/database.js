@@ -45,6 +45,27 @@ class DatabaseManager {
     if (fs.existsSync(SCHEMA_PATH)) {
       const sql = fs.readFileSync(SCHEMA_PATH, 'utf-8');
       this.db.exec(sql);
+
+      // Auto-migrate columns for tenants if table already existed
+      const tenantCols = [
+        "country TEXT DEFAULT 'PK'",
+        "currency TEXT DEFAULT 'PKR'",
+        "owner_phone TEXT",
+        "owner_whatsapp TEXT",
+        "owner_email TEXT"
+      ];
+      for (const colDef of tenantCols) {
+        try {
+          this.db.exec(`ALTER TABLE tenants ADD COLUMN ${colDef}`);
+        } catch (e) {
+          // Column already exists
+        }
+      }
+
+      // Auto-migrate calls table
+      try {
+        this.db.exec(`ALTER TABLE calls ADD COLUMN language_detected TEXT DEFAULT 'en'`);
+      } catch (e) {}
     }
   }
 

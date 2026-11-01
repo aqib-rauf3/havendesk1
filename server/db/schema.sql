@@ -23,9 +23,14 @@ CREATE TABLE IF NOT EXISTS plans (
 CREATE TABLE IF NOT EXISTS tenants (
   id TEXT PRIMARY KEY,
   business_name TEXT NOT NULL,
-  niche TEXT NOT NULL DEFAULT 'roofing',
+  niche TEXT NOT NULL DEFAULT 'solar_pk',
+  country TEXT NOT NULL DEFAULT 'PK', -- 'PK' (Pakistan), 'GB' (UK), 'US' (USA), etc.
+  currency TEXT NOT NULL DEFAULT 'PKR', -- 'PKR', 'GBP', 'USD'
   phone TEXT,
   whatsapp TEXT,
+  owner_phone TEXT,
+  owner_whatsapp TEXT,
+  owner_email TEXT,
   website TEXT,
   plan_id TEXT NOT NULL REFERENCES plans(id),
   subscription_status TEXT NOT NULL DEFAULT 'active', -- 'trialing', 'active', 'past_due', 'canceled', 'suspended'
@@ -64,7 +69,8 @@ CREATE TABLE IF NOT EXISTS calls (
   direction TEXT NOT NULL DEFAULT 'inbound',
   duration_seconds INTEGER NOT NULL DEFAULT 0,
   status TEXT NOT NULL DEFAULT 'completed', -- 'completed', 'missed', 'transferred', 'in_progress'
-  triage_level TEXT NOT NULL DEFAULT 'STANDARD', -- 'STANDARD', 'HIGH_EMERGENCY'
+  triage_level TEXT NOT NULL DEFAULT 'STANDARD', -- 'STANDARD', 'HIGH_LEAD', 'HIGH_EMERGENCY'
+  language_detected TEXT DEFAULT 'en', -- 'ur', 'ur-Roman', 'en', etc.
   summary TEXT,
   transcript TEXT, -- JSON array of dialogue turns
   tools_used TEXT, -- JSON array of tools executed during the call
@@ -124,7 +130,35 @@ CREATE TABLE IF NOT EXISTS appointments (
 );
 CREATE INDEX IF NOT EXISTS idx_appointments_tenant ON appointments(tenant_id, scheduled_slot ASC);
 
--- 8. Automations Config
+-- 8. Owner Notifications Dispatch Log (WhatsApp, SMS, Email, In-App)
+CREATE TABLE IF NOT EXISTS notifications (
+  id TEXT PRIMARY KEY,
+  tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+  call_id TEXT REFERENCES calls(id) ON DELETE SET NULL,
+  lead_id TEXT REFERENCES leads(id) ON DELETE SET NULL,
+  channel TEXT NOT NULL DEFAULT 'whatsapp', -- 'whatsapp', 'sms', 'email', 'in_app'
+  recipient TEXT NOT NULL,
+  title TEXT NOT NULL,
+  message TEXT NOT NULL,
+  urgency TEXT NOT NULL DEFAULT 'STANDARD', -- 'STANDARD', 'HIGH_LEAD', 'HIGH_EMERGENCY'
+  status TEXT NOT NULL DEFAULT 'delivered', -- 'delivered', 'pending', 'failed'
+  is_read INTEGER NOT NULL DEFAULT 0,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS idx_notifications_tenant ON notifications(tenant_id, is_read, created_at DESC);
+
+-- 9. Dynamic Phone Numbers Map (Supporting Multi-Country Inbound Lines)
+CREATE TABLE IF NOT EXISTS phone_numbers (
+  phone_number TEXT PRIMARY KEY, -- E.164 (e.g., '+924235780000', '+442079460912', '+18005557663')
+  tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+  country TEXT NOT NULL DEFAULT 'PK',
+  provider TEXT NOT NULL DEFAULT 'twilio', -- 'twilio', 'vapi', 'local_sip'
+  friendly_label TEXT,
+  is_active INTEGER NOT NULL DEFAULT 1,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 10. Automations Config
 CREATE TABLE IF NOT EXISTS automations (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
@@ -137,7 +171,7 @@ CREATE TABLE IF NOT EXISTS automations (
   UNIQUE(tenant_id, type)
 );
 
--- 9. Usage & Cost Records
+-- 11. Usage & Cost Records
 CREATE TABLE IF NOT EXISTS usage_records (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
@@ -150,7 +184,7 @@ CREATE TABLE IF NOT EXISTS usage_records (
   UNIQUE(tenant_id, billing_month)
 );
 
--- 10. Audit Logs
+-- 12. Audit Logs
 CREATE TABLE IF NOT EXISTS audit_logs (
   id TEXT PRIMARY KEY,
   user_id TEXT,
@@ -162,7 +196,7 @@ CREATE TABLE IF NOT EXISTS audit_logs (
 );
 CREATE INDEX IF NOT EXISTS idx_audit_created ON audit_logs(created_at DESC);
 
--- 11. Support Tickets
+-- 13. Support Tickets
 CREATE TABLE IF NOT EXISTS support_tickets (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
@@ -176,9 +210,9 @@ CREATE TABLE IF NOT EXISTS support_tickets (
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- 12. Niche Templates (Master Catalog)
+-- 14. Niche Templates (Master Catalog)
 CREATE TABLE IF NOT EXISTS niche_templates (
-  id TEXT PRIMARY KEY, -- 'roofing', 'dental', 'hvac'
+  id TEXT PRIMARY KEY, -- 'solar_pk', 'clinic_pk', 'roofing', 'dental', 'hvac'
   name TEXT NOT NULL,
   tagline TEXT,
   profile_json TEXT NOT NULL,
@@ -186,7 +220,7 @@ CREATE TABLE IF NOT EXISTS niche_templates (
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- 13. System Settings & Remote Config
+-- 15. System Settings & Remote Config
 CREATE TABLE IF NOT EXISTS system_settings (
   key TEXT PRIMARY KEY,
   value TEXT NOT NULL,

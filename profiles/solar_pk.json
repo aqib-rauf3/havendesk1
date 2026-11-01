@@ -1,0 +1,74 @@
+{
+  "id": "solar_pk",
+  "businessName": "Apex Solar Energy Lahore",
+  "tagline": "Pakistan's #1 Tier-1 On-Grid & Hybrid Solar & Net Metering Solutions",
+  "country": "PK",
+  "currency": "PKR",
+  "currencySymbol": "Rs.",
+  "phone": "+92 42 35780000",
+  "whatsapp": "+92 300 8472910",
+  "ownerPhone": "+92 300 8472910",
+  "ownerEmail": "kamran@apexsolar.pk",
+  "website": "https://apexsolar.pk",
+  "timezone": "Asia/Karachi",
+  "businessHours": {
+    "monday_saturday": "9:00 AM - 7:00 PM (PST)",
+    "sunday": "Emergency Inverter & Battery Dispatch Only"
+  },
+  "emergencyKeywords": [
+    "inverter fault", "blast", "smoke", "spark", "sparking", "load shedding", 
+    "battery dead", "jal gaya", "dhuan", "bijli band", "tripped", "inverter red light", "emergency"
+  ],
+  "triageRules": {
+    "HIGH_EMERGENCY": {
+      "condition": "Inverter sparking, battery failure, or total blackout for critical commercial/medical facility",
+      "action": "Trigger urgent technician dispatch alert to engineering head via WhatsApp, record call audio and location."
+    },
+    "HIGH_LEAD": {
+      "condition": "Customer asking for quotation for 5kW, 10kW, 15kW, 20kW+ solar installation, Wapda net metering, or electricity bill reduction",
+      "action": "Collect electricity bill amount, roof type, address, book free on-site survey, and dispatch lead alert to sales team."
+    }
+  },
+  "services": [
+    {
+      "name": "5kW Hybrid Solar Package (Inverex/Longi Tier-1)",
+      "priceRange": "Rs. 950,000 - Rs. 1,150,000",
+      "isEmergency": false
+    },
+    {
+      "name": "10kW On-Grid Solar System with Bi-Directional Green Meter",
+      "priceRange": "Rs. 1,650,000 - Rs. 1,950,000",
+      "isEmergency": false
+    },
+    {
+      "name": "LESCO / K-Electric Net Metering Licensing & Approvals",
+      "priceRange": "Rs. 95,000 (Complete turn-key filing)",
+      "isEmergency": false
+    },
+    {
+      "name": "Emergency Inverter & Lithium Battery Repair / Replacement",
+      "priceRange": "Rs. 15,000 - Rs. 45,000",
+      "isEmergency": true
+    }
+  ],
+  "receptionistPersona": {
+    "name": "Ayesha",
+    "greeting": "Assalam-o-Alaikum! Apex Solar Energy Lahore mein khushamdeed. Mera naam Ayesha hai. Main aapki kya madad kar sakti hoon?",
+    "tone": "Warm, professional, respectful Pakistani corporate hospitality",
+    "supportedLanguages": ["Urdu", "Roman Urdu", "English", "Punjabi"]
+  },
+  "faq": [
+    {
+      "q": "Net metering kitne din mein lag jati hai?",
+      "a": "LESCO aur DISCOs ke zariye green meter approval aam tor par 30 se 45 din mein mukammal ho jati hai. Hamari team complete documentation handle karti hai."
+    },
+    {
+      "q": "10kW solar system kitne units generate karta hai?",
+      "a": "10kW system Lahore mein maahana aam tor par 1,200 se 1,400 units bijli paida karta hai, jis se monthly bill mein 70,000 se 90,000 rupay tak bachat hoti hai."
+    },
+    {
+      "q": "Site survey ki fees kya hai?",
+      "a": "Lahore aur qareebi ilaqon mein technical site survey bilkul free hai."
+    }
+  ]
+}

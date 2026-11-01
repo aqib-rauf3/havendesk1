@@ -1,3 +1,9 @@
+
+window.formatMoney = function(amount) {
+  const isPK = state.tenant?.country === 'PK' || state.tenant?.currency === 'PKR';
+  const sym = isPK ? 'Rs. ' : (state.tenant?.currency === 'GBP' ? '£' : '$');
+  return sym + Number(amount || 0).toLocaleString();
+};
 /**
  * HavenDesk Client Portal Application Controller
  * Handles all 13 client portal views, auth state, routing, and live call simulation.
@@ -1104,7 +1110,7 @@ function renderCrmTableRows(leads) {
         </span>
       </td>
       <td style="font-weight: 700; color: var(--text-primary); font-size: 13px;">
-        $${(l.estimated_value || 0).toLocaleString()}
+        ${window.formatMoney(l.estimated_value)}
       </td>
       <td>
         <div style="display:flex; align-items:center; gap: 4px;">

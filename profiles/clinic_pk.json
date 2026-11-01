@@ -1,0 +1,69 @@
+{
+  "id": "clinic_pk",
+  "businessName": "Al-Rehman Family & Dental Clinic Karachi",
+  "tagline": "24/7 Urgent Medical, Pediatric & Dental Care in Clifton, Karachi",
+  "country": "PK",
+  "currency": "PKR",
+  "currencySymbol": "Rs.",
+  "phone": "+92 21 35870000",
+  "whatsapp": "+92 321 9876543",
+  "ownerPhone": "+92 321 9876543",
+  "ownerEmail": "doctor@alrehmanclinic.pk",
+  "website": "https://alrehmanclinic.pk",
+  "timezone": "Asia/Karachi",
+  "businessHours": {
+    "monday_sunday": "24/7 Emergency & OPD"
+  },
+  "emergencyKeywords": [
+    "chest pain", "bleeding", "severe pain", "daant dard", "accident", "fracture", 
+    "baby fever", "bachay ko bukhar", "tashannuj", "emergency", "sans lene mein dushwari"
+  ],
+  "triageRules": {
+    "HIGH_EMERGENCY": {
+      "condition": "Severe trauma, uncontrolled bleeding, high fever in infants, acute tooth abscess",
+      "action": "Immediate on-call doctor notification via WhatsApp, advise caller to proceed directly to trauma room, prepare ER bed."
+    },
+    "STANDARD_APPOINTMENT": {
+      "condition": "Routine dental checkup, scale and polish, general physician consult, ultrasound booking",
+      "action": "Book appointment slot on doctor calendar, send confirmation SMS and WhatsApp."
+    }
+  },
+  "services": [
+    {
+      "name": "General Physician Consultation (OPD)",
+      "priceRange": "Rs. 2,000",
+      "isEmergency": false
+    },
+    {
+      "name": "Emergency Dental Pain Relief & Pulpectomy",
+      "priceRange": "Rs. 4,500 - Rs. 8,000",
+      "isEmergency": true
+    },
+    {
+      "name": "Root Canal Treatment (RCT) with Ceramic Crown",
+      "priceRange": "Rs. 18,000 - Rs. 28,000",
+      "isEmergency": false
+    },
+    {
+      "name": "Full Ultrasonic Teeth Scaling & Polishing",
+      "priceRange": "Rs. 5,000",
+      "isEmergency": false
+    }
+  ],
+  "receptionistPersona": {
+    "name": "Fatima",
+    "greeting": "Assalam-o-Alaikum! Al-Rehman Medical & Dental Clinic mein khushamdeed. Main Fatima baat kar rahi hoon. Main aapki kya rehnumai kar sakti hoon?",
+    "tone": "Empathetic, reassuring, gentle Pakistani clinical receptionist",
+    "supportedLanguages": ["Urdu", "Roman Urdu", "English", "Sindhi"]
+  },
+  "faq": [
+    {
+      "q": "Kya clinic par female doctor dastyab hain?",
+      "a": "Jee bilkul, subah 10 baje se raat 8 baje tak female gynecologist aur female dental surgeon OPD mein mojood hoti hain."
+    },
+    {
+      "q": "Emergency charges kya hain?",
+      "a": "Emergency consultation charges Rs. 2,500 hain jo 24 ghante accessible hai."
+    }
+  ]
+}

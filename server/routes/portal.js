@@ -10,6 +10,7 @@ import { enforceTenantIsolation, checkSubscriptionActive } from '../middleware/t
 import { calendarService } from '../services/calendar.js';
 import { receptionistEngine } from '../services/engine.js';
 import { usageService } from '../services/usage.js';
+import { notifierService } from '../services/notifier.js';
 
 const router = express.Router();
 
@@ -28,7 +29,8 @@ router.get('/overview', (req, res) => {
   const totalBookings = db.get("SELECT COUNT(*) as count FROM appointments WHERE tenant_id = ? AND status != 'CANCELED'", [tid]).count;
 
   // Revenue estimation heuristics: Average job value based on niche
-  const avgJobValue = req.tenant.niche === 'roofing' ? 8500 : req.tenant.niche === 'dental' ? 1200 : 950;
+  const isPK = req.tenant.country === 'PK';
+  const avgJobValue = isPK ? (req.tenant.niche === 'solar_pk' ? 1650000 : 18000) : (req.tenant.niche === 'roofing' ? 8500 : 1200);
   const estimatedRevenue = totalBookings * avgJobValue;
   const minutesSaved = Math.round((totalCalls * 8) + (totalMessages * 3));
 
